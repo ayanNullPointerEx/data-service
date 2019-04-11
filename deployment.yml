@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-service-deployment
+  labels:
+    name: data-service-deployment-label
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: data-service-label
+  template:
+    metadata:
+      labels:
+        name: data-service-label
+    spec:
+      containers:
+        - name: data-service
+          image: books-data-service:v1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8090
